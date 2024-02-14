@@ -10,5 +10,5 @@ make
 
 ```bash
 ./server.out
-./client ../testcases/test_case_1.csv
+./client.out ../testcases/test_case_1.csv
 ```
