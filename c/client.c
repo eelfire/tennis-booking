@@ -14,6 +14,15 @@
 int MAX_LINES = 1000;
 
 void client(FILE *file) {
+    // output file
+    char output_filename[256];
+    sprintf(output_filename, "output.csv");
+    FILE *output_file = fopen(output_filename, "w");
+    if (output_file == NULL) {
+        printf("Error: Could not create output file\n");
+        exit(EXIT_FAILURE);
+    }
+
     int num_lines = 0;
     char *nline = NULL;
     size_t nlen = 0;
@@ -83,6 +92,9 @@ void client(FILE *file) {
 
         // print out the server's response
         printf("Server: %s\n", server_response);
+
+        // append the response to a file named output_<i>.csv
+        fprintf(output_file, "%s\n", server_response);
 
         // close the socket
         close(client_socket);
